@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "MindTrace - Distraction Tracker",
+  "version": "1.0",
+  "description": "Tracks distractions and shows motivational quotes with alerts.",
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.instagram.com/*",
+    "*://*.netflix.com/*",
+    "*://*.primevideo.com/*",
+    "*://*.twitter.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://*.instagram.com/*",
+        "*://*.netflix.com/*",
+        "*://*.primevideo.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "MindTrace"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["soft-alert-81627.mp3"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
